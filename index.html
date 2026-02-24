@@ -1,1 +1,28 @@
-<meta name="apple-itunes-app" content="app-id=6547834967">
+<div id="birthday-injector" style="background: #222; color: #0f0; padding: 20px; border: 2px solid #0f0; font-family: monospace;">
+    <h3>-- GAME DUNGEON APP INJECTOR --</h3>
+    <p>Enter App Store ID:</p>
+    <input type="number" id="appIdInput" placeholder="e.g. 426568904" style="padding: 5px;">
+    <button onclick="injectBanner()" style="background: #0f0; color: #000; font-weight: bold; cursor: pointer;">GENERATE BANNER</button>
+</div>
+
+<script>
+    function injectBanner() {
+        let id = document.getElementById('appIdInput').value;
+        if (id) {
+            // Remove old banner if one exists
+            let oldMeta = document.querySelector('meta[name="apple-itunes-app"]');
+            if (oldMeta) oldMeta.remove();
+
+            // Create and inject the new meta tag
+            let meta = document.createElement('meta');
+            meta.name = 'apple-itunes-app';
+            meta.content = 'app-id=' + id;
+            document.getElementsByTagName('head')[0].appendChild(meta);
+
+            alert("Banner injected for ID: " + id + "\nPull down the page to see it!");
+        } else {
+            alert("Yo, enter an ID first, bro.");
+        }
+    }
+</script>
+
